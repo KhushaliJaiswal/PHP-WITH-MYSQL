@@ -1,19 +1,34 @@
-//Simple PHP Browser Detection
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convert Last 3 Characters</title>
+</head>
+<body>
 
-<?php
+    <h2>Convert Last 3 Characters to Uppercase</h2>
 
-$browser = $_SERVER['HTTP_USER_AGENT'];
+    <form method="post">
+        <label>Enter a string:</label>
+        <input type="text" name="text" required>
+        <br><br>
 
-if (strpos($browser, 'Chrome') !== false) {
-    echo "You are using Google Chrome";
-} elseif (strpos($browser, 'Firefox') !== false) {
-    echo "You are using Mozilla Firefox";
-} elseif (strpos($browser, 'Safari') !== false) {
-    echo "You are using Safari";
-} elseif (strpos($browser, 'Edge') !== false) {
-    echo "You are using Microsoft Edge";
-} else {
-    echo "Browser not detected";
-}
+        <button type="submit">Convert</button>
+    </form>
 
-?>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $text = $_POST["text"];
+
+        if (strlen($text) < 3) {
+            $result = strtoupper($text);
+        } else {
+            $result = substr($text, 0, -3) . strtoupper(substr($text, -3));
+        }
+
+        echo "<h3>Result: $result</h3>";
+    }
+    ?>
+
+</body>
+</html>

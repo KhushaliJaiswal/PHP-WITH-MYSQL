@@ -1,26 +1,40 @@
-//Take the name as an input from the user and display it 
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nearest to 100</title>
 </head>
 <body>
-    <form action="Q2.php" method="post">
-        Name: 
-        <input type="text" name="name">
 
-        <input type="submit" value="Submit">
+<h2>Find Number Nearest to 100</h2>
 
+<form method="post">
+    Enter first number:
+    <input type="number" name="num1" required>
+    <br><br>
+
+    Enter second number:
+    <input type="number" name="num2" required>
+    <br><br>
+
+    <input type="submit" value="Check">
 </form>
 
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$name=$_POST["name"];
-echo "Your name is $name"
+    $a = $_POST["num1"];
+    $b = $_POST["num2"];
 
+    if ($a == $b) {
+        echo "<h3>Result: 0</h3>";
+    } elseif (abs(100 - $a) < abs(100 - $b)) {
+        echo "<h3>Result: $a</h3>";
+    } else {
+        echo "<h3>Result: $b</h3>";
+    }
+}
 ?>
+
 </body>
 </html>
+

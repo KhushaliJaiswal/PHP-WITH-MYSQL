@@ -1,29 +1,44 @@
-//Check if the email address is valid or not 
-
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Long and Short String</title>
+</head>
 <body>
 
-<form method="post">
-    Email:
-    <input type="text" name="email">
-    <input type="submit" value="Check">
-</form>
+    <h2>Long String + Short String + Long String</h2>
 
-<?php
+    <form method="post">
+        Enter first string:
+        <input type="text" name="str1" required>
+        <br><br>
 
+        Enter second string:
+        <input type="text" name="str2" required>
+        <br><br>
 
+        <input type="submit" value="Create String">
+    </form>
 
-    $email = $_POST["email"];
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Valid email address";
-    } else {
-        echo "Invalid email address";
+        $str1 = $_POST["str1"];
+        $str2 = $_POST["str2"];
+
+        if (strlen($str1) > strlen($str2)) {
+            $long = $str1;
+            $short = $str2;
+        } else {
+            $long = $str2;
+            $short = $str1;
+        }
+
+        $result = $long . $short . $long;
+
+        echo "<h3>Result: $result</h3>";
     }
-
-
-?>
+    ?>
 
 </body>
 </html>
+
