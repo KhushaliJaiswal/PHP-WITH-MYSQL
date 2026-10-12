@@ -1,48 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Check Range</title>
+    <title>User Input Form</title>
 </head>
 <body>
 
-    <h2>Check Three Numbers</h2>
+<h2>User Information Form</h2>
 
-    <form method="post">
-        <label>Enter first number:</label>
-        <input type="number" name="num1" required>
-        <br><br>
+<form method="post" action="">
+    <label>Full Name:</label>
+    <input type="text" name="fullname" required>
+    <br><br>
 
-        <label>Enter second number:</label>
-        <input type="number" name="num2" required>
-        <br><br>
+    <label>Email Address:</label>
+    <input type="email" name="email" required>
+    <br><br>
 
-        <label>Enter third number:</label>
-        <input type="number" name="num3" required>
-        <br><br>
+    <input type="submit" name="submit" value="Submit">
+</form>
 
-        <button type="submit">Check</button>
-    </form>
+<?php
+if (isset($_POST['submit'])) {
+    $fullname = $_POST['fullname'];
+    $email = $_POST['email'];
 
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-        $num1 = $_POST["num1"];
-        $num2 = $_POST["num2"];
-        $num3 = $_POST["num3"];
-
-        if (($num1 >= 20 && $num1 <= 50) ||
-            ($num2 >= 20 && $num2 <= 50) ||
-            ($num3 >= 20 && $num3 <= 50)) {
-
-            echo "<h3>Result: true</h3>";
-
-        } else {
-
-            echo "<h3>Result: false</h3>";
-        }
-    }
-    ?>
+    echo "<h3>Submitted Information:</h3>";
+    echo "Full Name: " . htmlspecialchars($fullname) . "<br>";
+    echo "Email Address: " . htmlspecialchars($email);
+}
+?>
 
 </body>
 </html>
-
